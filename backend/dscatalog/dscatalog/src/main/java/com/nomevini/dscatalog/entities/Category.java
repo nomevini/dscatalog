@@ -17,15 +17,14 @@ public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @UuidGenerator
-    private UUID id;
+    private Long id;
     private String name;
 
     public Category() {
 
     }
 
-    public Category(UUID id, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
     }
