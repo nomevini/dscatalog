@@ -2,11 +2,8 @@ package com.nomevini.dscatalog.entities;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.UUID;
-
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.UuidGenerator;
 
 @Data
 @Entity

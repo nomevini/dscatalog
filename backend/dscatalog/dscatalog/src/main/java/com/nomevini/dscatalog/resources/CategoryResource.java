@@ -1,5 +1,6 @@
 package com.nomevini.dscatalog.resources;
 
+import com.nomevini.dscatalog.dto.CategoryDTO;
 import com.nomevini.dscatalog.entities.Category;
 import com.nomevini.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class CategoryResource {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> categories = categoryService.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<CategoryDTO> categories = categoryService.findAll();
         return ResponseEntity.ok().body(categories);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id) {
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(categoryService.findById(id));
     }
 }

@@ -1,5 +1,6 @@
 package com.nomevini.dscatalog.services;
 
+import com.nomevini.dscatalog.dto.CategoryDTO;
 import com.nomevini.dscatalog.entities.Category;
 import com.nomevini.dscatalog.exception.ResourceNotFoundException;
 import com.nomevini.dscatalog.repositories.CategoryRepository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -17,13 +18,15 @@ public class CategoryService {
     private CategoryRepository repository;
 
     @Transactional(readOnly = true)
-    public List<Category> findAll() {
-        return repository.findAll();
+    public List<CategoryDTO> findAll() {
+        List<Category> list = repository.findAll();
+        return list.stream().map(CategoryDTO::new).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public Category findById(Long id) {
+    public CategoryDTO findById(Long id) {
         return repository.findById(id)
+                .map(CategoryDTO::new)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
     }
 }
